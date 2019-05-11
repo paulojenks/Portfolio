@@ -1,0 +1,25 @@
+{% extends 'my_portfolio/layout.html' %}
+
+{% block title %}{{ block.super }} New Project{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <h3>New Project</h3>
+    <form method="POST" action="{%  url 'my_portfolio:new_project' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container-centered"><h5>Project Name</h5>
+            {{ form.id }}
+            <p>{{ form.name }}</p>
+            <h5>Project Type</h5>
+            <p>{{ form.type }}</p>
+            <h5>Project Description</h5>
+            <p>{{ form.description }}</p>
+            <h5>Github Link</h5>
+            <p>{{ form.git_link }}</p>
+            <h5>Project Image</h5>
+            <p>{{ form.image }}</p>
+            <input type="submit" class="button-primary" value="Submit">
+        </div>
+      </form>
+    </div>
+{% endblock %}

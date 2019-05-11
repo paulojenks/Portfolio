@@ -1,0 +1,24 @@
+{% extends 'my_portfolio/layout.html' %}
+{% block title %}{{ block.super }}Home {% endblock %}
+
+{% block content %}
+    <div class="row no-gutters">
+    <div class="col-1"></div>
+    <div class="col-3">
+        <table class="table table-dark table-hover">
+    <tr>
+        <th></th>
+        <th>Project Lineup</th>
+    </tr>
+    {% for project in projects %}
+        <tr>
+            <td>{{ project.id }}</td>
+            <td><a href="{% url 'my_portfolio:project' pk=project.id %}">{{ project.name }}- <i>{{ project.type }}</i></a><br /></td>
+        </tr>
+    {% endfor %}
+    </table>
+    <a type="button" class="btn btn-primary btn-large" href="{% url 'my_portfolio:new_project' %}">Add Project</a>
+    </div>
+    <div class="col-7">{% block detail %}{% endblock %}</div>
+    </div>
+{% endblock %}
