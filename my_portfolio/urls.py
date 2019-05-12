@@ -14,3 +14,4 @@ urlpatterns = [
     url(r'contact/', views.ContactView.as_view(), name='contact'),
     url(r'(?P<pk>\d+)/$', views.ProjectView.as_view(), name='project'),
 ]
+urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

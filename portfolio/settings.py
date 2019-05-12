@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
-ROOT_URLCONF = 'porfolio.urls'
+ROOT_URLCONF = 'portfolio.urls'
 
 TEMPLATES = [
     {
@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'porfolio.wsgi.application'
+WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 
 # Database

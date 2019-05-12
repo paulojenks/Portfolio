@@ -2,23 +2,31 @@
 {% block title %}{{ block.super }}Home {% endblock %}
 
 {% block content %}
-    <div class="row no-gutters">
-    <div class="col-1"></div>
-    <div class="col-3">
-        <table class="table table-dark table-hover">
-    <tr>
-        <th></th>
-        <th>Project Lineup</th>
-    </tr>
-    {% for project in projects %}
-        <tr>
-            <td>{{ project.id }}</td>
-            <td><a href="{% url 'my_portfolio:project' pk=project.id %}">{{ project.name }}- <i>{{ project.type }}</i></a><br /></td>
-        </tr>
-    {% endfor %}
-    </table>
-    <a type="button" class="btn btn-primary btn-large" href="{% url 'my_portfolio:new_project' %}">Add Project</a>
-    </div>
-    <div class="col-7">{% block detail %}{% endblock %}</div>
-    </div>
+    <div class="container">
+        <div class="row">
+        {% for project in projects %}
+            <div class="column">
+                <div class="flip-card">
+                  <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                      <img src="{{ project.image.url }}" alt="Project" style="width:360px;height:500px;">
+                    </div>
+                    <div class="flip-card-back">
+                        <h1><a href="{% url 'my_portfolio:project' pk=project.id %}" target="_blank">{{ project.name }}</a></h1>
+                      <p>{{ project.type }}</p>
+                      <p>{{ project.description}}</p>
+                        <p>Github link: <a href="{{ project.git_link }}" target="_blank">{{ project.git_link }}</a></p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+                {% if forloop.last %}
+                    </div>>
+                {% else %}
+                    {% if forloop.counter|divisibleby:"3" %}
+                </div><div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            </div>
 {% endblock %}
